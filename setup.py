@@ -17,7 +17,7 @@ setup(
     license="MIT",
     py_modules=['pyGoBuildInfo'],
     build_golang={'root': 'github.com/MikeMoore63/pybuildInfo'},
-    ext_modules=[Extension('_pyGoBuildinfo', ['pyGoBuildinfo.go'])],
+    ext_modules=[Extension('_pyGoBuildinfo', ['pyGoBuildInfo.go'])],
     setup_requires=['setuptools-golang'],
     zip_safe=False,
 )

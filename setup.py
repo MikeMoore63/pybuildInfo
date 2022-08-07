@@ -21,4 +21,10 @@ setup(
     ext_modules=[Extension('_pyGoBuildinfo', ['pyGoBuildInfo.go'])],
     setup_requires=['setuptools-golang'],
     zip_safe=False,
+    scripts=['get_go_info'],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
 )

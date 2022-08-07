@@ -8,7 +8,7 @@ with open("README.md", "r", encoding='utf-8') as fh:
 
 setup(
     name='pyGoBuildInfo',
-    version='0.1.1',
+    version='0.1.2',
     author="Mike Moore",
     author_email="z_z_zebra@yahoo.com",
     description="A utility to extract go build info information fro go executables and shared libraries",

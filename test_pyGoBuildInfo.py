@@ -1,8 +1,8 @@
-import pyGoBuildInfo
+import pygobuildinfo
 import json
 
 def test_get_info(file):
-    res = pyGoBuildInfo.get_go_build_info(file)
+    res = pygobuildinfo.get_go_build_info(file)
     print(json.dumps(res,indent=4))
 
 test_get_info("foo/bar")

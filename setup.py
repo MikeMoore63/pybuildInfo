@@ -7,8 +7,8 @@ with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 setup(
-    name='pyGoBuildInfo',
-    version='0.1.2',
+    name='pygobuildinfo',
+    version='0.1.3',
     author="Mike Moore",
     author_email="z_z_zebra@yahoo.com",
     description="A utility to extract go build info information fro go executables and shared libraries",
@@ -16,7 +16,7 @@ setup(
     long_description=long_description,
     license="MIT",
     url="https://github.com/Mikemoore63/pybuildInfo",
-    py_modules=['pyGoBuildInfo'],
+    py_modules=['pygobuildinfo'],
     build_golang={'root': 'github.com/MikeMoore63/pybuildInfo'},
     ext_modules=[Extension('_pyGoBuildinfo', ['pyGoBuildInfo.go'])],
     setup_requires=['setuptools-golang'],
@@ -27,4 +27,9 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    options={
+        "entry_points": {
+            "hook-dirs": "pygobuildinfo.__pyinstaller.get_hook_dirs"
+        }
+    }
 )

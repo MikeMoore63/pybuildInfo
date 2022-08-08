@@ -3,12 +3,13 @@ A python package that extracts go build information from go based executables an
 Example usage
 
 ```python
+
 import pygobuildinfo
 import json
 
 
 def test_get_info(file):
-    res = pyGoBuildInfo.get_go_build_info(file)
+    res = pygobuildinfo.get_go_build_info(file)
     print(json.dumps(res, indent=4))
 
 
@@ -17,7 +18,7 @@ test_get_info("/usr/bin/du")
 test_get_info("/Users/auser/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider.elf")
 test_get_info("/Users/auser/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider.exe")
 test_get_info("/Users/auser/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider")
-test_get_info("/Users/auser/go/src/pybuildInfo/_pyGoBuildinfo.cpython-39-darwin.so")
+test_get_info("/Users/auser/go/pygobuildinfo/pybuildInfo/_pyGoBuildinfo.cpython-39-darwin.so")
 ```
 
 The result returned is always a dict object for errors  the dictionary returned contains a key;

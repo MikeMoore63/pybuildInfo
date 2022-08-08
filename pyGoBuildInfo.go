@@ -18,9 +18,9 @@ func getgobuildinfo(fileNameIn *C.char) *C.char {
 func main() {
 	//getgobuildinfo(C.CString("foo/bar"))
 	//getgobuildinfo(C.CString("/usr/bin/du"))
-	//getgobuildinfo(C.CString("/Users/mike/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider.elf"))
-	//getgobuildinfo(C.CString("/Users/mike/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider.exe"))
-	//getgobuildinfo(C.CString("/Users/mike/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider"))
+	//getgobuildinfo(C.CString("/Users/mike/go/pygobuildinfo/spire/support/oidc-discovery-provider/oidc-discovery-provider.elf"))
+	//getgobuildinfo(C.CString("/Users/mike/go/pygobuildinfo/spire/support/oidc-discovery-provider/oidc-discovery-provider.exe"))
+	//getgobuildinfo(C.CString("/Users/mike/go/pygobuildinfo/spire/support/oidc-discovery-provider/oidc-discovery-provider"))
 }
 
 func getGoBuildInfoInternal(fileName string) string {

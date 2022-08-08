@@ -1,3 +1,5 @@
 include README.md
 include *.go go.mod go.sum
 include LICENSE
+include pygobuildinfo/*.py
+include pygobuildinfo/_pyinstaller/*.py

@@ -4,7 +4,7 @@ Example usage
 
 ```python
 
-import pygobuildinfo
+from src import pygobuildinfo
 import json
 
 

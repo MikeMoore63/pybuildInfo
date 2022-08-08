@@ -17,7 +17,7 @@ from pathlib import Path
 
 
 # Location of shared library
-here = Path(__file__).absolute().parent
+here = Path(__file__).absolute().parent.parent
 ext_suffix = get_config_var('EXT_SUFFIX')
 so_file = os.path.join(here, ('_pyGoBuildinfo' + ext_suffix))
 

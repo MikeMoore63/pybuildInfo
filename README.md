@@ -1,17 +1,24 @@
-A python package that extracts go build information from go based executables and shared libraries. The package leverages the golang debug/buildinfo package to extract the information hence reliaes on a shared library to do this work.
+A python package that extracts go build information from go based executables, go.mod and go.sum files  and shared libraries. The package leverages the golang debug/buildinfo and golang.org/x/mod/modfile packages to extract the information hence relies on a shared library to do this work.
 
 Example usage
 
 ```python
 
-from src import pygobuildinfo
+from pygobuildinfo import get_go_build_info, get_go_mod, get_go_sum
 import json
 
 
 def test_get_info(file):
-    res = pygobuildinfo.get_go_build_info(file)
+    res = get_go_build_info(file)
     print(json.dumps(res, indent=4))
 
+def test_go_mod(file):
+    res = get_go_mod(file)
+    print(json.dumps(res,indent=4))
+
+def test_go_sum(file):
+    res = get_go_sum(file)
+    print(json.dumps(res,indent=4))
 
 test_get_info("foo/bar")
 test_get_info("/usr/bin/du")
@@ -19,6 +26,8 @@ test_get_info("/Users/auser/go/src/spire/support/oidc-discovery-provider/oidc-di
 test_get_info("/Users/auser/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider.exe")
 test_get_info("/Users/auser/go/src/spire/support/oidc-discovery-provider/oidc-discovery-provider")
 test_get_info("/Users/auser/go/pygobuildinfo/pybuildInfo/_pyGoBuildinfo.cpython-39-darwin.so")
+test_go_mod("/Users/auser/go/src/pygobuildInfo/go.mod")
+test_go_sum("/Users/auser/go/src/pygobuildInfo/go.sum")
 ```
 
 The result returned is always a dict object for errors  the dictionary returned contains a key;
@@ -303,3 +312,4 @@ on success a python dict of the buildinfo struct is returned
     ]
 }
 ```
+For go_sum and go_mod the structure will be similar with less info a go.sum does not know the module its part of nor go versions so just has dependencies, versions and hashes. For a go.mod it may have go version will have module path and dependencies but no hashes.

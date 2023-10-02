@@ -15,8 +15,8 @@ jobs:
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.16.1
-        # env:
-        #   CIBW_SOME_OPTION: value
+        env:
+          CIBW_BEFORE_ALL: 'yum install -y golang'
         #    ...
         # with:
         #   package-dir: .

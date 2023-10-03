@@ -3,9 +3,7 @@
 
 [tool.cibuildwheel.windows]
 archs=["AMD64"]
-before-all = """
-powershell {project}\\installGo.ps1
-"""
+
 environment= """
 PATH="C:\\Program Files\\Go;$PATH"
 """

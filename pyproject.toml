@@ -4,7 +4,7 @@
 [tool.cibuildwheel.windows]
 archs=["AMD64"]
 before-all = "$url = 'https://dl.google.com/go/go1.21.1.windows-amd64.zip'; 	Write-Host ('Downloading {0} ...' -f $url); 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; ls whe   Write-Host 'Expanding ...'; 	Expand-Archive go.zip -DestinationPath C:\\; 		Write-Host 'Moving ...'; 	Move-Item -Path C:\\go -Destination 'C:\\Program Files\\Go'"
-environment = "PATH=$PATH;C:\\Program Files\\Go"
+environment = "PATH=%PATH%;C:\\Program Files\\Go"
 
 [tool.cibuildwheel.linux]
 archs=["x86_64"]

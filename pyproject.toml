@@ -1,0 +1,13 @@
+[tool.cibuildwheel]
+
+
+[tool.cibuildwheel.linux]
+archs=["x86_64"]
+before-all = "yum install -y golang"
+
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = "apk add go"
+
+
+

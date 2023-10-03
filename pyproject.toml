@@ -3,7 +3,7 @@
 
 [tool.cibuildwheel.windows]
 archs=["amd64"]
-before-all = "$url = 'https://dl.google.com/go/go1.21.1.windows-amd64.zip'; 	Write-Host ('Downloading {0} ...' -f $url); 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; 		$sha256 = '10a4f5b63215d11d1770453733dbcbf024f3f74872f84e28d7ea59f0250316c6'; 	Write-Host ('Verifying sha256 ({0}) ...' -f $sha256); 	if ((Get-FileHash go.zip -Algorithm sha256).Hash -ne $sha256) { 		Write-Host 'FAILED!'; 		exit 1; 	}; 		Write-Host 'Expanding ...'; 	Expand-Archive go.zip -DestinationPath C:\\; 		Write-Host 'Moving ...'; 	Move-Item -Path C:\\go -Destination 'C:\\Program Files\\Go'"
+before-all = "$url = 'https://dl.google.com/go/go1.21.1.windows-amd64.zip'; 	Write-Host ('Downloading {0} ...' -f $url); 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; ls whe   Write-Host 'Expanding ...'; 	Expand-Archive go.zip -DestinationPath C:\\; 		Write-Host 'Moving ...'; 	Move-Item -Path C:\\go -Destination 'C:\\Program Files\\Go'"
 
 [tool.cibuildwheel.linux]
 archs=["x86_64"]
@@ -11,7 +11,8 @@ before-all = "yum install -y golang"
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"
-before-all = "apk add go"
+before-all = "wget https://golang.org/dl/go1.21.1.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz"
+environment = "PATH=$PATH:/usr/local/go/bin"
 
 
 

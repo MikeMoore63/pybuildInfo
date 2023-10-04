@@ -5,7 +5,8 @@
 archs=["AMD64"]
 
 environment= """
-PATH="C:\\Program Files\\Go;$PATH"
+PATH="C:\\Go\\bin;C:\\Program Files\\Go\\bin;$PATH"
+GOPATH="C:\\Go"
 """
 
 [tool.cibuildwheel.linux]

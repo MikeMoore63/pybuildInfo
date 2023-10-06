@@ -4,6 +4,12 @@ param(
 	[string]$v='1.21.1'
 )
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
+$OutputVariable = (go version) | Out-String
+if ($?)
+{
+    Write-Host 'Go Installed Already ...';
+    exit 0
+}
 $ErrorActionPreference = 'Stop';
 $ProgressPreference = 'SilentlyContinue';
 $env:GOPATH= 'C:\go'

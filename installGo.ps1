@@ -3,7 +3,7 @@ param(
 	[string]$w='c:\go',
 	[string]$v='1.21.1'
 )
-
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 $ErrorActionPreference = 'Stop';
 $ProgressPreference = 'SilentlyContinue';
 $env:GOPATH= 'C:\go'

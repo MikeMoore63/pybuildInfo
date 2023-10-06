@@ -7,7 +7,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 $OutputVariable = (go version) | Out-String
 if ($?)
 {
-    Write-Host 'Go Installed Already ...';
+    Write-Host 'Go Installed Already ...' $OutputVariable;
     exit 0
 }
 $ErrorActionPreference = 'Stop';

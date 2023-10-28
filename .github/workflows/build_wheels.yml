@@ -34,8 +34,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build sdist
-        run: pipx run build --sdist
+      - name: Build sdist and wheel
+        run: pipx run build
 
       - uses: actions/upload-artifact@v3
         with:

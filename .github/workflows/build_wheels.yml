@@ -66,4 +66,3 @@ jobs:
           skip-existing: true
           verbose: true
           verify-metadata: true
-          password: ${{ secrets.PYPI_API_TOKEN }}

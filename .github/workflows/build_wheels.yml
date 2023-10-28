@@ -66,5 +66,4 @@ jobs:
           skip-existing: true
           verbose: true
           verify-metadata: true
-          # password: "designednottowork"
           password: ${{ secrets.PYPI_API_TOKEN }}

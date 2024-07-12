@@ -20,19 +20,16 @@ sed_escape()
 }
 switch_eol_centos_repos()
 {
-	local old_mirrorlist_host="mirrorlist.centos.org"
-	local old_host="mirror.centos.org"
-	local new_host="vault.centos.org"
-
-	grep -qFw "$old_host" /etc/yum.repos.d/CentOS-*.repo 2>/dev/null || return 0
-	local backup="`mktemp -d "/tmp/yum.repos.d-$(date --rfc-3339=date)-XXXXXX"`"
-	! [ -d "$backup" ] || cp -raT /etc/yum.repos.d "$backup" || :
-
-	sed -i \
-		-e "s|^\s*\(mirrorlist\b[^/]*//`sed_escape "$old_mirrorlist_host"`/.*\)$|#\1|" \
-		-e "s|^#*\s*baseurl\b\([^/]*\)//`sed_escape "$old_host"`/\(.*\)$|baseurl\1//$new_host/\2|" \
-		/etc/yum.repos.d/CentOS-*.repo
-	echo "YUM package manager repositories were backed up to '$backup' and switched from $old_host to $new_host ." >&2
+	if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ] && [ "${AUDITWHEEL_ARCH}" != "s390x" ]; then
+		# Centos 7 is EOL and is no longer available from the usual mirrors, so switch
+		# to https://vault.centos.org
+		sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/fastestmirror.conf
+		sed -i 's/^mirrorlist/#mirrorlist/g' /etc/yum.repos.d/*.repo
+		sed -i 's;^.*baseurl=http://mirror;baseurl=https://vault;g' /etc/yum.repos.d/*.repo
+		if [ "${AUDITWHEEL_ARCH}" == "aarch64" ] || [ "${AUDITWHEEL_ARCH}" == "ppc64le" ]; then
+			sed -i 's;/centos/7/;/altarch/7/;g' /etc/yum.repos.d/*.repo
+		fi
+	fi
 }
 switch_eol_centos_repos
 yum install -y golang'''

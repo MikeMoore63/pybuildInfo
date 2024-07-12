@@ -13,6 +13,11 @@ GOPATH="C:\\Go"
 [tool.cibuildwheel.linux]
 archs=["x86_64"]
 before-all = '''
+sed_escape()
+{
+	# Note: this is not a full implementation
+	echo -n "$1" | sed -e 's|\.|\\.|g'
+}
 switch_eol_centos_repos()
 {
 	local old_mirrorlist_host="mirrorlist.centos.org"

@@ -12,7 +12,25 @@ GOPATH="C:\\Go"
 
 [tool.cibuildwheel.linux]
 archs=["x86_64"]
-before-all = "yum install -y golang"
+before-all = """
+switch_eol_centos_repos()
+{
+	local old_mirrorlist_host="mirrorlist.centos.org"
+	local old_host="mirror.centos.org"
+	local new_host="vault.centos.org"
+
+	grep -qFw "$old_host" /etc/yum.repos.d/CentOS-*.repo 2>/dev/null || return 0
+	local backup="`mktemp -d "/tmp/yum.repos.d-$(date --rfc-3339=date)-XXXXXX"`"
+	! [ -d "$backup" ] || cp -raT /etc/yum.repos.d "$backup" || :
+
+	sed -i \
+		-e "s|^\s*\(mirrorlist\b[^/]*//`sed_escape "$old_mirrorlist_host"`/.*\)$|#\1|" \
+		-e "s|^#*\s*baseurl\b\([^/]*\)//`sed_escape "$old_host"`/\(.*\)$|baseurl\1//$new_host/\2|" \
+		/etc/yum.repos.d/CentOS-*.repo
+	echo "YUM package manager repositories were backed up to '$backup' and switched from $old_host to $new_host ." >&2
+}
+switch_eol_centos_repos
+yum install -y golang"""
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"

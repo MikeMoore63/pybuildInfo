@@ -4,7 +4,7 @@
 [tool.cibuildwheel.windows]
 archs=["AMD64"]
 before-all = "powershell {project}\\installGo.ps1"
-skip = "cp36-win* pp310-manylinux_x86_64"
+skip = "cp36-win*"
 environment= """
 PATH="C:\\Go\\bin;C:\\Program Files\\Go\\bin;$PATH"
 GOPATH="C:\\Go"

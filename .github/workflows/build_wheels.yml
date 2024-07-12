@@ -32,7 +32,7 @@ jobs:
         env:
           # configure cibuildwheel to build native archs ('auto'), and some
           # emulated ones
-          CIBW_ARCHS_LINUX: auto64
+          CIBW_ARCHS_LINUX: auto64 aarch64
 
       - uses: actions/upload-artifact@v3
         with:

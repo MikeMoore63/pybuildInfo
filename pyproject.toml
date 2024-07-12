@@ -12,7 +12,7 @@ GOPATH="C:\\Go"
 
 [tool.cibuildwheel.linux]
 archs=["x86_64"]
-before-all = """
+before-all = '''
 switch_eol_centos_repos()
 {
 	local old_mirrorlist_host="mirrorlist.centos.org"
@@ -30,7 +30,7 @@ switch_eol_centos_repos()
 	echo "YUM package manager repositories were backed up to '$backup' and switched from $old_host to $new_host ." >&2
 }
 switch_eol_centos_repos
-yum install -y golang"""
+yum install -y golang'''
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"

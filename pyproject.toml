@@ -13,11 +13,6 @@ GOPATH="C:\\Go"
 [tool.cibuildwheel.linux]
 archs=["x86_64"]
 before-all = '''
-sed_escape()
-{
-	# Note: this is not a full implementation
-	echo -n "$1" | sed -e 's|\.|\\.|g'
-}
 switch_eol_centos_repos()
 {
 	if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ] && [ "${AUDITWHEEL_ARCH}" != "s390x" ]; then
@@ -32,7 +27,11 @@ switch_eol_centos_repos()
 	fi
 }
 switch_eol_centos_repos
-yum install -y golang'''
+if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ]
+then
+	yum install -y golang
+fi
+'''
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"

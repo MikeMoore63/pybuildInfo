@@ -12,7 +12,7 @@ GOPATH="C:\\Go"
 
 [tool.cibuildwheel.linux]
 archs=["x86_64"]
-#before-all = "yum install -y golang"
+before-all = "yum install -y golang"
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"

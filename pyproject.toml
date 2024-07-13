@@ -1,6 +1,5 @@
 [tool.cibuildwheel]
 
-
 [tool.cibuildwheel.windows]
 archs=["AMD64"]
 before-all = "powershell {project}\\installGo.ps1"
@@ -32,6 +31,12 @@ then
 	yum install -y golang
 fi
 '''
+
+[tool.cibuildwheel.macos]
+before-all = '''
+brew install go@1.21
+'''
+environment = "PATH=/opt/homebrew/opt/go@1.21/bin:$PATH"
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"

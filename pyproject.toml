@@ -1,5 +1,4 @@
 [tool.cibuildwheel]
-CIBW_ENVIRONMENT_MACOS = ['PATH="/opt/homebrew/opt/go@1.21/bin:$PATH"']
 
 [tool.cibuildwheel.windows]
 archs=["AMD64"]

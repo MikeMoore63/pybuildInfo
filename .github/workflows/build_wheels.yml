@@ -34,7 +34,7 @@ jobs:
           # emulated ones
           CIBW_ARCHS_LINUX: auto64
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./wheelhouse/*.whl
 

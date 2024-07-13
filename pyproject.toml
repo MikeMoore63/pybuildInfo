@@ -35,8 +35,8 @@ fi
 
 [tool.cibuildwheel.macos]
 before-all = '''
-curl -o /tmp/golang.pkg https://go.dev/dl/go1.21.12.darwin-${AUDITWHEEL_ARCH}.pkg
-sudo installer -pkg /private/var/folders/gm/xmzwtm9d4k7f441h26r609sm0000gn/T/cibw-run-jeipbmmg/cp310-macosx_x86_64/build/Python.pkg -target /
+curl -o /tmp/golang.pkg https://dl.google.com/go/go1.21.12.darwin-${AUDITWHEEL_ARCH}.pkg
+sudo installer -pkg /tmp/golang.pkg -target /
 '''
 
 [[tool.cibuildwheel.overrides]]

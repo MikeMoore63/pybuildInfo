@@ -35,13 +35,14 @@ fi
 
 [tool.cibuildwheel.macos]
 before-all = '''
-if [ $(uname -p) == "i386" ]
-then
-	curl -o /tmp/golang.pkg https://dl.google.com/go/go1.21.12.darwin-amd64.pkg
-else
-	curl -o /tmp/golang.pkg https://dl.google.com/go/go1.21.12.darwin-arm64.pkg
-fi
-sudo installer -pkg /tmp/golang.pkg -target /
+brew install go@1.21.12
+# if [ $(uname -p) == "i386" ]
+# then
+# 	curl -o /tmp/golang.pkg https://dl.google.com/go/go1.21.12.darwin-amd64.pkg
+# else
+# 	curl -o /tmp/golang.pkg https://dl.google.com/go/go1.21.12.darwin-arm64.pkg
+# fi
+# sudo installer -pkg /tmp/golang.pkg -target /
 '''
 
 [[tool.cibuildwheel.overrides]]

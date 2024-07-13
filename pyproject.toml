@@ -35,7 +35,7 @@ fi
 
 [tool.cibuildwheel.macos]
 before-all = '''
-brew install go@1.21.12
+brew install go@1.21
 # if [ $(uname -p) == "i386" ]
 # then
 # 	curl -o /tmp/golang.pkg https://dl.google.com/go/go1.21.12.darwin-amd64.pkg

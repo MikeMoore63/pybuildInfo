@@ -7,6 +7,8 @@ skip = "cp36-win*"
 environment= """
 PATH="C:\\Go\\bin;C:\\Program Files\\Go\\bin;$PATH"
 GOPATH="C:\\Go"
+CC=cl
+CXX=cl
 """
 
 [tool.cibuildwheel.linux]

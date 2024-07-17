@@ -1,5 +1,6 @@
 [tool.cibuildwheel]
 
+
 [tool.cibuildwheel.windows]
 archs=["AMD64"]
 before-all = "powershell {project}\\installGo.ps1"
@@ -10,7 +11,7 @@ GOPATH="C:\\Go"
 """
 
 [tool.cibuildwheel.linux]
-archs=["x86_64"]
+archs=["auto64","aarch64"]
 before-all = '''
 switch_eol_centos_repos()
 {
@@ -26,11 +27,19 @@ switch_eol_centos_repos()
 	fi
 }
 switch_eol_centos_repos
-if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ]
+if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ] && [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
 then
 	yum install -y golang
+fi	
+if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ] && [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
+then
+    mkdir -p /usr/local
+    curl https://dl.google.com/go/go1.21.12.linux-arm64.tar.gz | tar -C /usr/local -xzf -
 fi
 '''
+environment = """
+PATH=$PATH:/usr/local/go/bin
+"""
 
 [tool.cibuildwheel.macos]
 before-all = '''
@@ -40,8 +49,18 @@ environment = "PATH=/usr/local/opt/go@1.21/bin:/opt/homebrew/opt/go@1.21/bin:$PA
 
 [[tool.cibuildwheel.overrides]]
 select = "*-musllinux*"
-before-all = "wget https://golang.org/dl/go1.21.1.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz"
-environment = "PATH=$PATH:/usr/local/go/bin"
+before-all = '''
+if [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
+then
+	wget https://golang.org/dl/go1.21.12.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.21.12.linux-amd64.tar.gz
+fi
+if [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
+then
+	wget https://golang.org/dl/go1.21.12.linux-arm64.tar.gz;tar -C /usr/local -xzf go1.21.12.linux-arm64.tar.gz
+fi
+'''
 
-
+environment = """
+PATH=$PATH:/usr/local/go/bin
+"""
 

@@ -1,6 +1,6 @@
 A python package that extracts go build information from go based executables, go.mod and go.sum files  and shared libraries. The package leverages the golang debug/buildinfo and golang.org/x/mod/modfile packages to extract the information hence relies on a shared library to do this work.
 
-Example usage
+Example usage 
 
 ```python
 

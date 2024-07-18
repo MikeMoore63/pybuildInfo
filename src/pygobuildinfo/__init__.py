@@ -12,7 +12,9 @@ __all__ = [
 import ctypes
 import json
 import os
-from distutils.sysconfig import get_config_var
+
+from sysconfig import get_config_var
+
 from pathlib import Path
 
 

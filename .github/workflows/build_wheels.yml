@@ -30,6 +30,10 @@ jobs:
             pyver: pp39
           - os: windows-latest
             pyver: pp310
+          - os: windows-latest
+            pyver: cp36
+          - os: windows-latest
+            pyver: cp37
 
     steps:
       - uses: actions/checkout@v4
@@ -64,7 +68,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}-${{ matrix.pyver }}
+          name: python-wheels-source
           path: dist/*.tar.gz
 
   upload_pypi:

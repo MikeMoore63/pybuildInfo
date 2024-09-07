@@ -17,6 +17,23 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04, windows-latest, macos-13, macos-14]
+        pyver: [cp36, cp37, cp38, cp39, cp310, cp311, cp312, cp313, pp38, pp39,pp310]
+        exclude:
+          # excludes 
+          - os: macos-14
+            pyver: cp36
+          - os: macos-14
+            pyver: cp37
+          - os: windows-latest
+            pyver: pp38
+          - os: windows-latest
+            pyver: pp39
+          - os: windows-latest
+            pyver: pp310
+          - os: windows-latest
+            pyver: cp36
+          - os: windows-latest
+            pyver: cp37
 
     steps:
       - uses: actions/checkout@v4
@@ -33,10 +50,11 @@ jobs:
           # configure cibuildwheel to build native archs ('auto'), and some
           # emulated ones
           CIBW_ARCHS_LINUX: auto64 aarch64
+          CIBW_BUILD: ${{matrix.pyver}}-*
 
       - uses: actions/upload-artifact@v4
         with:
-          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}
+          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}-${{ matrix.pyver }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
@@ -50,7 +68,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}
+          name: python-wheels-source
           path: dist/*.tar.gz
 
   upload_pypi:

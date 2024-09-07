@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}
+          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}-${{ matrix.pyver }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
@@ -52,7 +52,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}
+          name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}-${{ matrix.pyver }}
           path: dist/*.tar.gz
 
   upload_pypi:

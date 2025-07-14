@@ -1,7 +1,7 @@
 # Install the current Go release
 param(
 	[string]$w='c:\go',
-	[string]$v='1.24.1'
+	[string]$v='1.24.5'
 )
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope CurrentUser
 $OutputVariable = (go version) | Out-String
@@ -16,7 +16,7 @@ $env:GOPATH= 'C:\go'
 $newPath = ('{0}\bin;C:\Program Files\Go\bin;{1}' -f $env:GOPATH, $env:PATH);
 Write-Host ('Updating PATH: {0}' -f $newPath);
 [Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::User);
-$url = 'https://dl.google.com/go/go1.24.1.windows-amd64.zip';
+$url = 'https://dl.google.com/go/go1.24.5.windows-amd64.zip';
 Write-Host ('Downloading {0} ...' -f $url);
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
 Invoke-WebRequest -Uri $url -OutFile 'go.zip';

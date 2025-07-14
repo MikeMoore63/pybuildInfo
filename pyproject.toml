@@ -1,10 +1,10 @@
 [tool.cibuildwheel]
-
+enable = ["all"]
 
 [tool.cibuildwheel.windows]
 archs=["AMD64"]
 before-all = "powershell {project}\\installGo.ps1"
-skip = "cp36-win* cp37-win* pp*-win*"
+skip = "pp*-win*"
 environment= """
 PATH="C:\\Go\\bin;C:\\Program Files\\Go\\bin;$PATH"
 GOPATH="C:\\Go"
@@ -27,15 +27,15 @@ switch_eol_centos_repos()
 	fi
 }
 switch_eol_centos_repos
-if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ] && [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
+if [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
 then
 	mkdir -p /usr/local
-    curl https://dl.google.com/go/go1.24.1.linux-amd64.tar.gz | tar -C /usr/local -xzf -
+    curl https://dl.google.com/go/go1.24.5.linux-amd64.tar.gz | tar -C /usr/local -xzf -
 fi	
-if [ "${AUDITWHEEL_POLICY}" == "manylinux2014" ] && [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
+if  [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
 then
     mkdir -p /usr/local
-    curl https://dl.google.com/go/go1.24.1.linux-arm64.tar.gz | tar -C /usr/local -xzf -
+    curl https://dl.google.com/go/go1.24.5.linux-arm64.tar.gz | tar -C /usr/local -xzf -
 fi
 '''
 environment = """
@@ -53,11 +53,11 @@ select = "*-musllinux*"
 before-all = '''
 if [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
 then
-	wget https://golang.org/dl/go1.24.1.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.24.1.linux-amd64.tar.gz
+	wget https://golang.org/dl/go1.24.5.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz
 fi
 if [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
 then
-	wget https://golang.org/dl/go1.24.1.linux-arm64.tar.gz;tar -C /usr/local -xzf go1.24.1.linux-arm64.tar.gz
+	wget https://golang.org/dl/go1.24.5.linux-arm64.tar.gz;tar -C /usr/local -xzf go1.24.5.linux-arm64.tar.gz
 fi
 '''
 

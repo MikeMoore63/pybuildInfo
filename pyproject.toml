@@ -30,12 +30,12 @@ switch_eol_centos_repos
 if [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
 then
 	mkdir -p /usr/local
-    curl https://dl.google.com/go/go1.24.1.linux-amd64.tar.gz | tar -C /usr/local -xzf -
+    curl https://dl.google.com/go/go1.24.5.linux-amd64.tar.gz | tar -C /usr/local -xzf -
 fi	
 if  [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
 then
     mkdir -p /usr/local
-    curl https://dl.google.com/go/go1.24.1.linux-arm64.tar.gz | tar -C /usr/local -xzf -
+    curl https://dl.google.com/go/go1.24.5.linux-arm64.tar.gz | tar -C /usr/local -xzf -
 fi
 '''
 environment = """
@@ -53,11 +53,11 @@ select = "*-musllinux*"
 before-all = '''
 if [ "${AUDITWHEEL_ARCH}" == "x86_64" ]
 then
-	wget https://golang.org/dl/go1.24.1.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.24.1.linux-amd64.tar.gz
+	wget https://golang.org/dl/go1.24.5.linux-amd64.tar.gz;tar -C /usr/local -xzf go1.24.5.linux-amd64.tar.gz
 fi
 if [ "${AUDITWHEEL_ARCH}" == "aarch64" ]
 then
-	wget https://golang.org/dl/go1.24.1.linux-arm64.tar.gz;tar -C /usr/local -xzf go1.24.1.linux-arm64.tar.gz
+	wget https://golang.org/dl/go1.24.5.linux-arm64.tar.gz;tar -C /usr/local -xzf go1.24.5.linux-arm64.tar.gz
 fi
 '''
 

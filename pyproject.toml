@@ -1,5 +1,5 @@
 [tool.cibuildwheel]
-
+enable = ["cpython-freethreading", "pypy", "cpython-prerelease"]
 
 [tool.cibuildwheel.windows]
 archs=["AMD64"]

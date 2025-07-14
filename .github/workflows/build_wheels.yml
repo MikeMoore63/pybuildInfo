@@ -26,6 +26,8 @@ jobs:
             pyver: pp39
           - os: windows-latest
             pyver: pp310
+          - os: windows-latest
+            pyver: pp311
 
     steps:
       - uses: actions/checkout@v4

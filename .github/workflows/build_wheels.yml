@@ -46,7 +46,7 @@ jobs:
           CIBW_ARCHS_LINUX: auto64 aarch64
           CIBW_BUILD: ${{matrix.pyver}}-*
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: python-wheels-${{ matrix.os }}-${{ matrix.cibw_archs }}-${{ matrix.pyver }}
           path: ./wheelhouse/*.whl
@@ -60,7 +60,7 @@ jobs:
       - name: Build sdist
         run: pipx run build --sdist
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: python-wheels-source
           path: dist/*.tar.gz
@@ -77,7 +77,7 @@ jobs:
     # or, alternatively, upload to PyPI on every tag starting with 'v' (remove on: release above to use this)
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         with:
           # unpacks default artifact into dist/
           # if `name: artifact` is omitted, the action will create extra parent dir

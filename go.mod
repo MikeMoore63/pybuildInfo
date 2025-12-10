@@ -1,5 +1,5 @@
 module github.com/MikeMoore63/pybuildInfo
 
-go 1.24.0
+go 1.25
 
 require golang.org/x/mod v0.31.0

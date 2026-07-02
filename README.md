@@ -1,5 +1,7 @@
 A python package that extracts go build information from go based executables, go.mod and go.sum files  and shared libraries. The package leverages the golang debug/buildinfo and golang.org/x/mod/modfile packages to extract the information hence relies on a shared library to do this work.
 
+Dependency note: this package is being deprecated in favor of the unified package pygorpmrustinfo. If you depend on this package in another project, update your dependency declaration (for example in requirements, pyproject.toml, setup.cfg, or setup.py) to depend on pygorpmrustinfo instead. The unified package preserves the existing functionality while avoiding the multiple-Go-runtime risk discussed in [Go issue #65050](https://go.dev/issue/65050) and reducing memory usage.
+
 Example usage 
 
 ```python
